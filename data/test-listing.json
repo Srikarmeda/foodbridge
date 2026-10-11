@@ -1,0 +1,21 @@
+{
+  "listingId": { "S": "test-001" },
+  "donorId": { "S": "test-donor" },
+  "donorName": { "S": "Test Kitchen" },
+  "title": { "S": "Veg biryani, 20 portions" },
+  "foodType": { "S": "Cooked meal" },
+  "dietary": { "S": "veg" },
+  "quantityKg": { "N": "6" },
+  "servings": { "N": "20" },
+  "photoKey": { "S": "" },
+  "address": { "S": "Anna Nagar, Chennai" },
+  "lat": { "N": "13.085" },
+  "lng": { "N": "80.2101" },
+  "geo5": { "S": "test5" },
+  "pickupStart": { "S": "2026-10-10T12:00:00.000Z" },
+  "pickupEnd": { "S": "2026-10-10T14:00:00.000Z" },
+  "expiresAt": { "S": "2026-10-10T20:00:00.000Z" },
+  "status": { "S": "AVAILABLE" },
+  "createdAt": { "S": "2026-10-10T09:00:00.000Z" },
+  "updatedAt": { "S": "2026-10-10T09:00:00.000Z" }
+}
