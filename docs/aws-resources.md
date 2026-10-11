@@ -9,6 +9,9 @@
 | S3 bucket (website) | foodbridge-web-srikar | Task 2 |
 | Website endpoint | http://foodbridge-web-srikar.s3-website-us-east-1.amazonaws.com | Task 2 |
 | Cognito user pool | _filled in Task 3_ | Task 3 |
+| Cognito user pool | foodbridge-pool (us-east-1_gI0tvTNia) | Task 3 |
+| Cognito app client | foodbridge-web-client (public, no secret) | Task 3 |
+| Cognito groups | Admin, Donor, Receiver | Task 3 |
 
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)
