@@ -12,6 +12,11 @@
 | Cognito user pool | foodbridge-pool (us-east-1_gI0tvTNia) | Task 3 |
 | Cognito app client | foodbridge-web-client (public, no secret) | Task 3 |
 | Cognito groups | Admin, Donor, Receiver | Task 3 |
+| Lambda layer | foodbridge-common (Python 3.12) | Task 4 |
+| Lambda | foodbridge-profile | Task 4 |
+| Lambda | foodbridge-presign | Task 4 |
+| Lambda | foodbridge-listings | Task 4 |
+| Lambda | foodbridge-claims | Task 4 |
 
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)

@@ -48,3 +48,12 @@ Region: us-east-1 · Billing: on-demand · Timestamps: ISO-8601 UTC strings
 - `status` is a DynamoDB reserved word; use ExpressionAttributeNames (`#s`).
 - Claims are denormalized (donorId, kg, servings) so stats need no joins.
 - Double-claim prevention relies on atomic conditional writes.
+
+## Additions made in Task 4
+- Claims are denormalized further: listingTitle, donorName, address, lat, lng, photoKey,
+  pickupEnd, expiresAt (so "My claims" needs no joins). Extra timestamps: cancelledAt, updatedAt.
+- Listing has `description` and `claimedBy`/`claimId` (removed again on cancel).
+- Claim transitions (all use TransactWriteItems on claims + listings):
+  CLAIMED -> PICKED_UP (receiver) -> COMPLETED (donor); CLAIMED -> CANCELLED (receiver, listing reopens).
+- Donor withdraw = conditional delete of an AVAILABLE listing (no extra status).
+- Nearby search: geo5 cells covering the radius (<= 10 km), then Haversine; larger radius uses the status index.
