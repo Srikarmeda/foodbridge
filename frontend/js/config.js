@@ -5,7 +5,7 @@ export const CONFIG = {
     userPoolId: "REPLACE_IN_TASK_3",
     clientId: "REPLACE_IN_TASK_3",
   },
-  imagesBucketUrl: "REPLACE_IN_TASK_2",
+  imagesBucketUrl: "https://foodbridge-images-srikar.s3.us-east-1.amazonaws.com",
   map: { center: [13.0827, 80.2707], zoom: 12 }, // Chennai
   impact: { mealsPerKg: 2.5, co2PerKg: 2.5 },
 };
