@@ -17,6 +17,9 @@
 | Lambda | foodbridge-presign | Task 4 |
 | Lambda | foodbridge-listings | Task 4 |
 | Lambda | foodbridge-claims | Task 4 |
+| HTTP API | foodbridge-api (| HTTP API | foodbridge-api (https://xxxxxxxx.execute-api.us-east-1.amazonaws.com) | Task 5 |
+| JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |) | Task 5 |
+| JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |
 
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)

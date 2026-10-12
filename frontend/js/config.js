@@ -1,6 +1,6 @@
 export const CONFIG = {
   region: "us-east-1",
-  apiBaseUrl: "REPLACE_IN_TASK_5",
+    apiBaseUrl: "https://qkljooqzrj.execute-api.us-east-1.amazonaws.com",
   cognito: {
     userPoolId: "us-east-1_gI0tvTNia",   
     clientId: "44at0h3bhp70n3dkm289332tni", 
