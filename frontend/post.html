@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post food | FoodBridge</title>
+  <meta name="theme-color" content="#1F7A4D" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <noscript><p class="container" style="padding:1rem">FoodBridge needs JavaScript to run. Please enable it.</p></noscript>
+  <main id="main" class="page container" style="max-width:860px">
+    <div class="page-header">
+      <div>
+        <h1>Post surplus food</h1>
+        <p class="text-muted" style="margin:var(--space-2) 0 0">Receivers nearby are emailed as soon as you post.</p>
+      </div>
+    </div>
+
+    <form id="post-form" class="stack" style="--stack:var(--space-5)" novalidate>
+      <!-- 1 -->
+      <section class="card form-section stack" aria-labelledby="s1">
+        <h2 id="s1"><span class="form-section__num">1</span>What are you donating?</h2>
+        <div class="form-grid">
+          <div class="field field--full"><label class="label" for="title">Title <span class="req">*</span></label><input class="input" id="title" maxlength="80" autocomplete="off" placeholder="Veg biryani, 20 portions" /></div>
+          <div class="field"><label class="label" for="foodType">Food type <span class="req">*</span></label>
+            <select class="select" id="foodType"><option>Cooked meal</option><option>Bakery</option><option>Fruits &amp; vegetables</option><option>Packaged food</option><option>Dairy</option><option>Beverages</option><option>Other</option></select></div>
+          <div class="field" role="radiogroup" aria-labelledby="diet-label"><span class="label" id="diet-label">Dietary type <span class="req">*</span></span>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="diet" value="veg" /><span>Veg</span></label>
+              <label class="chip"><input type="radio" name="diet" value="non-veg" /><span>Non-veg</span></label>
+              <label class="chip"><input type="radio" name="diet" value="vegan" /><span>Vegan</span></label>
+            </div>
+            <span class="error-text" id="diet-error" hidden>Choose a dietary type.</span></div>
+          <div class="field"><label class="label" for="quantityKg">Quantity (kg) <span class="req">*</span></label><input class="input" id="quantityKg" type="number" step="0.1" min="0.1" max="1000" inputmode="decimal" placeholder="6" /></div>
+          <div class="field"><label class="label" for="servings">Approx. servings <span class="req">*</span></label><input class="input" id="servings" type="number" step="1" min="1" max="5000" inputmode="numeric" placeholder="20" /></div>
+          <div class="field field--full"><label class="label" for="description">Notes for receivers</label><textarea class="textarea" id="description" maxlength="300" placeholder="Freshly cooked, packed in boxes. Please bring a bag."></textarea><span class="counter" id="desc-count">0/300</span></div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="card form-section stack" aria-labelledby="s2">
+        <h2 id="s2"><span class="form-section__num">2</span>Photo <span class="text-muted text-sm" style="font-weight:400">(optional, recommended)</span></h2>
+        <div class="field">
+          <input class="sr-only photo-input" id="photo" type="file" accept="image/jpeg,image/png,image/webp" />
+          <label class="dropzone" id="photo-drop" for="photo"><span data-icon="image" data-size="34"></span><strong>Tap to add a photo</strong><span class="hint">JPEG, PNG or WebP, up to 5 MB. You can also drag one here.</span></label>
+          <div class="photo-preview" id="photo-preview" hidden><img id="photo-img" alt="Preview of your food photo" /><button class="btn btn-secondary btn-sm" id="photo-remove" type="button">Remove photo</button></div>
+          <span class="error-text" id="photo-error" hidden></span>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="card form-section stack" aria-labelledby="s3">
+        <h2 id="s3"><span class="form-section__num">3</span>Pickup location</h2>
+        <div class="field">
+          <label class="label" for="address">Pickup address <span class="req">*</span></label>
+          <div class="addr-row"><input class="input" id="address" maxlength="200" autocomplete="street-address" placeholder="Anna Nagar, Chennai" /><button class="btn btn-secondary" id="find-address" type="button">Find on map</button></div>
+          <span class="hint">Search the address, click the map, or drag the pin to the exact spot.</span>
+        </div>
+        <div class="cluster"><button class="btn btn-ghost btn-sm" id="use-location" type="button"><span data-icon="pin" data-size="16"></span>Use my current location</button></div>
+        <div class="map" id="map" role="application" aria-label="Map: click to place a pin at the pickup location"></div>
+        <div class="form-grid" id="manual-coords" hidden>
+          <div class="field"><label class="label" for="lat">Latitude</label><input class="input" id="lat" type="number" step="any" placeholder="13.0827" /></div>
+          <div class="field"><label class="label" for="lng">Longitude</label><input class="input" id="lng" type="number" step="any" placeholder="80.2707" /></div>
+        </div>
+        <p class="text-sm text-muted" id="coords" aria-live="polite" style="margin:0">Click the map, search an address, or use your location to drop a pin.</p>
+        <span class="error-text" id="map-error" hidden>Drop a pin so receivers can find you.</span>
+        <label class="check"><input type="checkbox" id="remember" checked /> Remember this location for next time</label>
+      </section>
+
+      <!-- 4 -->
+      <section class="card form-section stack" aria-labelledby="s4">
+        <h2 id="s4"><span class="form-section__num">4</span>Pickup window and expiry</h2>
+        <div class="form-grid">
+          <div class="field"><label class="label" for="pickupStart">Pickup starts <span class="req">*</span></label><input class="input" id="pickupStart" type="datetime-local" /></div>
+          <div class="field"><label class="label" for="pickupEnd">Pickup ends <span class="req">*</span></label><input class="input" id="pickupEnd" type="datetime-local" /></div>
+          <div class="field"><label class="label" for="expiresAt">Food expires <span class="req">*</span></label><input class="input" id="expiresAt" type="datetime-local" /><span class="hint">Within 3 days, and not before pickup ends.</span></div>
+        </div>
+      </section>
+
+      <div class="submit-row">
+        <button class="btn btn-primary btn-lg" id="submit" type="submit">Post donation</button>
+        <a class="btn btn-ghost btn-lg" href="donor.html">Cancel</a>
+        <span class="text-sm text-muted" id="submit-status" aria-live="polite"></span>
+      </div>
+    </form>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script type="module" src="js/pages/post.js"></script>
+</body>
+</html>
