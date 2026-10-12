@@ -8,6 +8,8 @@ Routes: POST /listings/{id}/claim   receiver claims (atomic, no double-claim)
 """
 from common import *  # noqa: F401,F403 (layer)
 
+import notify
+
 client = dynamodb.meta.client
 
 
@@ -74,6 +76,10 @@ def claim_listing(event, user):
         if e.response["Error"]["Code"] == "TransactionCanceledException":
             raise ApiError(409, "Someone just claimed this listing")
         raise
+    try:
+        notify.notify_claim(claim, user["email"])  # confirmation + donor heads-up
+    except Exception as e:
+        print("notify failed:", repr(e))
     return 200, {"claim": claim}
 
 
