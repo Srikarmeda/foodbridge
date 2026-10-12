@@ -24,5 +24,6 @@
 | Lambda layer | foodbridge-common version 2 (adds notify.py) | Task 6 |
 | Lambda | foodbridge-sweeper | Task 6 |
 | EventBridge rule | foodbridge-sweeper-5min, rate(5 minutes) | Task 6 |
+| Frontend (design system) | styleguide.html on the website bucket | Task 7 |
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)
