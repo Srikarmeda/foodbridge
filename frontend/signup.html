@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create account | FoodBridge</title>
+  <meta name="theme-color" content="#1F7A4D" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <noscript><p class="container" style="padding:1rem">FoodBridge needs JavaScript to run. Please enable it.</p></noscript>
+  <main id="main" class="auth-wrap">
+    <section class="card auth-card stack" style="--stack:var(--space-5)">
+      <div class="alert alert--error" id="form-alert" role="alert" hidden></div>
+
+      <!-- Step 1 -->
+      <div id="step-1" class="stack" style="--stack:var(--space-5)">
+        <div>
+          <p class="step-label">Step 1 of 2</p>
+          <h1>Create your account</h1>
+          <p class="text-muted" style="margin:0">Join as a donor or a receiver. It takes about two minutes.</p>
+        </div>
+        <form id="signup-form" class="stack" style="--stack:var(--space-5)" novalidate>
+          <div class="field" id="role-field">
+            <span class="label" id="role-label">I want to <span class="req">*</span></span>
+            <div class="role-pick" role="radiogroup" aria-labelledby="role-label">
+              <label class="role-card"><input type="radio" name="role" value="DONOR" /><span class="role-card__body"><strong>Donate food</strong><small>Restaurants, hotels, caterers, households</small></span></label>
+              <label class="role-card"><input type="radio" name="role" value="RECEIVER" /><span class="role-card__body"><strong>Receive food</strong><small>NGOs, shelters, volunteers</small></span></label>
+            </div>
+            <span class="error-text" id="role-err" hidden>Choose how you will use FoodBridge.</span>
+          </div>
+          <div class="field"><label class="label" for="name">Your name <span class="req">*</span></label><input class="input" id="name" autocomplete="name" maxlength="60" /></div>
+          <div class="field"><label class="label" for="org">Organisation or kitchen name <span class="text-muted" style="font-weight:400">(optional)</span></label><input class="input" id="org" autocomplete="organization" maxlength="80" /><span class="hint">Shown to others instead of your personal name.</span></div>
+          <div class="field"><label class="label" for="email">Email <span class="req">*</span></label><input class="input" id="email" type="email" autocomplete="email" inputmode="email" /></div>
+          <div class="field">
+            <label class="label" for="password">Password <span class="req">*</span></label>
+            <div class="input-group">
+              <input class="input" id="password" type="password" autocomplete="new-password" aria-describedby="pw-rules" />
+              <button class="input-group__btn" id="toggle-pw" type="button" aria-pressed="false" aria-label="Show password">Show</button>
+            </div>
+            <ul class="rules" id="pw-rules"></ul>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block" id="submit" type="submit">Create account</button>
+        </form>
+        <p class="text-sm text-muted" style="margin:0">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step-2" class="stack" style="--stack:var(--space-5)" hidden>
+        <div>
+          <p class="step-label">Step 2 of 2</p>
+          <h1>Check your email</h1>
+          <p class="text-muted" style="margin:0">We sent a 6-digit code to <strong id="confirm-email"></strong>. It can take a minute. Check spam too.</p>
+        </div>
+        <form id="confirm-form" class="stack" style="--stack:var(--space-5)" novalidate>
+          <div class="field"><label class="label" for="code">Confirmation code</label><input class="input code-input" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" /></div>
+          <button class="btn btn-primary btn-lg btn-block" id="confirm-submit" type="submit">Confirm and continue</button>
+        </form>
+        <div class="cluster">
+          <button class="btn btn-ghost btn-sm" id="resend" type="button">Resend code</button>
+          <button class="btn btn-ghost btn-sm" id="back" type="button">Use a different email</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script type="module" src="js/pages/signup.js"></script>
+</body>
+</html>

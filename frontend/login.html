@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log in | FoodBridge</title>
+  <meta name="theme-color" content="#1F7A4D" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <noscript><p class="container" style="padding:1rem">FoodBridge needs JavaScript to run. Please enable it.</p></noscript>
+  <main id="main" class="auth-wrap">
+    <section class="card auth-card stack" style="--stack:var(--space-5)" aria-labelledby="login-title">
+      <div>
+        <h1 id="login-title">Welcome back</h1>
+        <p class="text-muted" style="margin:0">Log in to donate or claim surplus food.</p>
+      </div>
+      <div class="alert alert--error" id="form-alert" role="alert" hidden></div>
+      <form id="login-form" class="stack" style="--stack:var(--space-5)" novalidate>
+        <div class="field">
+          <label class="label" for="email">Email</label>
+          <input class="input" id="email" type="email" autocomplete="username" inputmode="email" />
+        </div>
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <div class="input-group">
+            <input class="input" id="password" type="password" autocomplete="current-password" />
+            <button class="input-group__btn" id="toggle-pw" type="button" aria-pressed="false" aria-label="Show password">Show</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" id="submit" type="submit">Log in</button>
+      </form>
+      <p class="text-sm text-muted" style="margin:0">New to FoodBridge? <a href="signup.html">Create an account</a></p>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>
