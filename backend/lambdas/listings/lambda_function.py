@@ -9,6 +9,8 @@ import math
 
 from common import *  # noqa: F401,F403 (layer)
 
+import notify
+
 FOOD_TYPES = {"Cooked meal", "Bakery", "Fruits & vegetables", "Packaged food",
               "Dairy", "Beverages", "Other"}
 DIETARY = {"veg", "non-veg", "vegan"}
@@ -134,6 +136,10 @@ def create_listing(event, user):
         "updatedAt": iso(now),
     })
     LISTINGS.put_item(Item=item)
+    try:
+        notify.notify_new_listing(item)  # never raises; errors are logged
+    except Exception as e:
+        print("notify failed:", repr(e))
     return 201, {"listing": public_listing(item)}
 
 
