@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design system | FoodBridge</title>
+  <meta name="description" content="FoodBridge design system and component gallery" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }
+    .swatch { overflow: hidden; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); }
+    .swatch__color { height: 64px; }
+    .swatch__meta { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+    .swatch__meta code { color: var(--ink-muted); }
+    .demo { padding: var(--space-5); }
+    .gallery-title { margin-top: var(--space-7); }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main" class="page container stack" style="--stack: var(--space-5)">
+    <div class="page-header">
+      <div>
+        <p class="hero__eyebrow" style="margin-bottom:var(--space-3)">Design system</p>
+        <h1>FoodBridge component gallery</h1>
+        <p class="text-muted" style="margin:0">Every page is built from these parts. Colours, type, spacing, states and motion live in <code>css/tokens.css</code>.</p>
+      </div>
+    </div>
+
+    <h2 class="gallery-title">Colour</h2>
+    <div class="swatches" id="swatches"></div>
+    <h3>Text contrast (WCAG AA needs 4.5:1 for normal text)</h3>
+    <div class="table-wrap"><table class="table"><thead><tr><th>Pair</th><th>Text</th><th>Background</th><th>Ratio</th><th>AA</th></tr></thead><tbody id="contrast"></tbody></table></div>
+
+    <h2 class="gallery-title">Typography</h2>
+    <div class="card demo stack">
+      <h1>Heading 1: Poppins 700</h1>
+      <h2>Heading 2: Poppins 600</h2>
+      <h3>Heading 3: Poppins 600</h3>
+      <p>Body text is Inter 400 at 16px with a 1.6 line height, so it stays comfortable to read on small screens.</p>
+      <p class="text-muted text-sm">Muted small text: Inter 14px, used for hints and metadata.</p>
+    </div>
+
+    <h2 class="gallery-title">Buttons</h2>
+    <div class="card demo stack">
+      <div class="cluster">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-accent">Accent</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="cluster">
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary" id="loading-demo">Click for loading state</button>
+      </div>
+    </div>
+
+    <h2 class="gallery-title">Forms</h2>
+    <div class="card demo">
+      <div class="form-grid">
+        <div class="field"><label class="label" for="f1">Pickup address <span class="req">*</span></label><input class="input" id="f1" placeholder="Anna Nagar, Chennai" /><span class="hint">Receivers see this after claiming.</span></div>
+        <div class="field has-error"><label class="label" for="f2">Quantity (kg) <span class="req">*</span></label><input class="input" id="f2" value="-3" aria-invalid="true" aria-describedby="f2e" /><span class="error-text" id="f2e">Quantity must be between 0.1 and 1000.</span></div>
+        <div class="field"><label class="label" for="f3">Food type</label><select class="select" id="f3"><option>Cooked meal</option><option>Bakery</option><option>Fruits &amp; vegetables</option></select></div>
+        <div class="field"><span class="label" id="diet-label">Dietary type</span>
+          <div class="chips" role="radiogroup" aria-labelledby="diet-label">
+            <label class="chip"><input type="radio" name="diet" checked /><span>Veg</span></label>
+            <label class="chip"><input type="radio" name="diet" /><span>Non-veg</span></label>
+            <label class="chip"><input type="radio" name="diet" /><span>Vegan</span></label>
+          </div></div>
+      </div>
+    </div>
+
+    <h2 class="gallery-title">Status badges and dietary marks</h2>
+    <div class="card demo cluster">
+      <span class="badge badge--available">Available</span><span class="badge badge--claimed">Claimed</span>
+      <span class="badge badge--pickedup">Picked up</span><span class="badge badge--completed">Completed</span>
+      <span class="badge badge--expired">Expired</span><span class="badge badge--cancelled">Cancelled</span>
+      <span class="badge badge--urgent">45m left</span>
+      <span class="diet diet--veg"><span class="diet__mark"></span>Veg</span>
+      <span class="diet diet--nonveg"><span class="diet__mark"></span>Non-veg</span>
+      <span class="diet diet--vegan"><span class="diet__mark"></span>Vegan</span>
+    </div>
+
+    <h2 class="gallery-title">Listing cards</h2>
+    <div class="grid grid-cards" id="cards"></div>
+
+    <h2 class="gallery-title">Loading, empty and error states</h2>
+    <div class="cluster"><button class="btn btn-secondary" id="toggle-skeleton">Show skeleton loaders for 2 seconds</button></div>
+    <div id="skeleton-slot"></div>
+    <div class="grid grid-2">
+      <div id="empty-slot"></div>
+      <div id="error-slot"></div>
+    </div>
+
+    <h2 class="gallery-title">Toasts and dialog</h2>
+    <div class="card demo cluster">
+      <button class="btn btn-primary" id="t-success">Success toast</button>
+      <button class="btn btn-secondary" id="t-info">Info toast</button>
+      <button class="btn btn-danger" id="t-error">Error toast</button>
+      <button class="btn btn-secondary" id="open-dialog">Confirm dialog</button>
+    </div>
+
+    <h2 class="gallery-title">Stats and table (admin)</h2>
+    <div class="grid grid-cards" style="--min:200px">
+      <div class="card stat"><div class="stat__value">1,240</div><div class="stat__label">Meals saved</div></div>
+      <div class="card stat"><div class="stat__value">496 kg</div><div class="stat__label">Food rescued</div></div>
+      <div class="card stat"><div class="stat__value">1,240 kg</div><div class="stat__label">CO₂e avoided (estimate)</div></div>
+    </div>
+    <div class="table-wrap">
+      <table class="table"><thead><tr><th>Listing</th><th>Donor</th><th>Status</th><th>Expires</th></tr></thead>
+        <tbody>
+          <tr><td>Veg biryani, 20 portions</td><td>Anna Nagar Kitchen</td><td><span class="badge badge--available">Available</span></td><td>Today, 8:00 PM</td></tr>
+          <tr><td>Bread and buns</td><td>City Bakery</td><td><span class="badge badge--claimed">Claimed</span></td><td>Today, 6:30 PM</td></tr>
+          <tr><td>Fruit boxes</td><td>Green Grocers</td><td><span class="badge badge--completed">Completed</span></td><td>Yesterday</td></tr>
+        </tbody></table>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script type="module">
+    import { h, toast, withLoading, skeletonGrid, listingCard, emptyState, errorState, confirmDialog } from "./js/ui.js";
+    import { mountShell } from "./js/shell.js";
+    mountShell();
+
+    // Colour swatches
+    const palette = [
+      ["Primary", "#1F7A4D"], ["Primary hover", "#17613D"], ["Primary soft", "#DCEFE2"], ["Accent", "#C2410C"],
+      ["Danger", "#B42318"], ["Ink", "#14281D"], ["Muted", "#4A5D52"], ["Background", "#F6F9F5"],
+      ["Surface 2", "#EEF4EE"], ["Border", "#DDE6DD"], ["Focus", "#1D4ED8"],
+    ];
+    document.getElementById("swatches").append(...palette.map(([n, hex]) =>
+      h("div", { class: "swatch" }, h("div", { class: "swatch__color", style: `background:${hex}` }),
+        h("div", { class: "swatch__meta" }, h("strong", {}, n), h("br"), h("code", {}, hex)))));
+
+    // Live contrast check
+    const lum = (hex) => {
+      const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+        .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+    const pairs = [
+      ["Body text on page", "#14281D", "#F6F9F5"], ["Muted text on white", "#4A5D52", "#FFFFFF"],
+      ["Muted text on surface 2", "#4A5D52", "#EEF4EE"], ["Primary button", "#FFFFFF", "#1F7A4D"],
+      ["Primary button hover", "#FFFFFF", "#17613D"], ["Accent button", "#FFFFFF", "#C2410C"],
+      ["Danger button", "#FFFFFF", "#B42318"], ["Link on page", "#1F7A4D", "#F6F9F5"],
+      ["Badge: available", "#14532D", "#DCFCE7"], ["Badge: claimed", "#1E3A8A", "#DBEAFE"],
+      ["Badge: picked up", "#78350F", "#FEF3C7"], ["Badge: completed", "#134E4A", "#CCFBF1"],
+      ["Badge: expired", "#4B5563", "#F3F4F6"], ["Badge: cancelled", "#7F1D1D", "#FEE2E2"],
+      ["Badge: urgent", "#7C2D12", "#FFEDD5"], ["Veg mark on white", "#15803D", "#FFFFFF"],
+    ];
+    document.getElementById("contrast").append(...pairs.map(([n, fg, bg]) => {
+      const r = ratio(fg, bg);
+      return h("tr", {}, h("td", {}, n), h("td", {}, fg), h("td", {}, bg), h("td", {}, r.toFixed(2) + ":1"),
+        h("td", {}, h("span", { class: `badge ${r >= 4.5 ? "badge--available" : "badge--cancelled"}` }, r >= 4.5 ? "Pass" : "Fail")));
+    }));
+
+    // Listing cards
+    const hrs = (n) => new Date(Date.now() + n * 3600e3).toISOString();
+    const base = { donorName: "Anna Nagar Kitchen", foodType: "Cooked meal", address: "Anna Nagar, Chennai", photoUrl: null, distanceKm: 3.2 };
+    document.getElementById("cards").append(
+      listingCard({ ...base, title: "Veg biryani, 20 portions", dietary: "veg", servings: 20, quantityKg: 6, expiresAt: hrs(2.5), status: "AVAILABLE" }, { href: "#",
+        footer: h("button", { class: "btn btn-primary btn-block", type: "button", onclick: () => toast.success("Claimed! Check your email for pickup details.") }, "Claim this food") }),
+      listingCard({ ...base, title: "Chicken curry and rice", dietary: "non-veg", servings: 12, quantityKg: 5, expiresAt: hrs(0.7), status: "AVAILABLE", distanceKm: 1.4 }, { href: "#" }),
+      listingCard({ ...base, title: "Fresh bread and buns", dietary: "vegan", servings: 30, quantityKg: 4, expiresAt: hrs(5), status: "CLAIMED", distanceKm: 6.8 }, { href: "#" }));
+
+    // States
+    document.getElementById("empty-slot").append(emptyState({ icon: "leaf", title: "No food nearby right now", text: "Try a wider radius or check back soon. New donations appear here as they are posted.", action: { label: "Widen search", onClick: () => toast.info("Radius widened to 25 km") } }));
+    document.getElementById("error-slot").append(errorState({ message: "We could not load listings. Check your connection and try again.", onRetry: () => toast.info("Retrying...") }));
+
+    // Skeleton demo
+    const slot = document.getElementById("skeleton-slot");
+    document.getElementById("toggle-skeleton").addEventListener("click", () => {
+      slot.replaceChildren(skeletonGrid(3));
+      setTimeout(() => slot.replaceChildren(), 2000);
+    });
+
+    // Buttons, toasts, dialog
+    document.getElementById("loading-demo").addEventListener("click", (e) =>
+      withLoading(e.currentTarget, () => new Promise((r) => setTimeout(r, 1600))).then(() => toast.success("Saved")));
+    document.getElementById("t-success").onclick = () => toast.success("Listing posted. Nearby receivers were notified.");
+    document.getElementById("t-info").onclick = () => toast.info("Your session will refresh automatically.");
+    document.getElementById("t-error").onclick = () => toast.error("Someone just claimed this listing.");
+    document.getElementById("open-dialog").onclick = async () => {
+      const ok = await confirmDialog({ title: "Withdraw this listing?", message: "Receivers will no longer see it. This cannot be undone.", confirmLabel: "Withdraw", danger: true });
+      toast(ok ? "Listing withdrawn" : "Cancelled", { type: ok ? "success" : "info" });
+    };
+  </script>
+</body>
+</html>
