@@ -20,6 +20,9 @@
 | HTTP API | foodbridge-api (| HTTP API | foodbridge-api (https://xxxxxxxx.execute-api.us-east-1.amazonaws.com) | Task 5 |
 | JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |) | Task 5 |
 | JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |
-
+| SES identities | 3 verified emails (sender, donor, receiver; not listed) | Task 6 |
+| Lambda layer | foodbridge-common version 2 (adds notify.py) | Task 6 |
+| Lambda | foodbridge-sweeper | Task 6 |
+| EventBridge rule | foodbridge-sweeper-5min, rate(5 minutes) | Task 6 |
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)
