@@ -75,7 +75,7 @@ def main():
         print(("PASS  " if ok else "FAIL  ") + name)
         if not ok:
             print("      got:", detail)
-        results.append(ok)
+            results.append(bool(ok))
 
     now = datetime.now(timezone.utc)
     listing_body = {
