@@ -25,5 +25,7 @@
 | Lambda | foodbridge-sweeper | Task 6 |
 | EventBridge rule | foodbridge-sweeper-5min, rate(5 minutes) | Task 6 |
 | Frontend (design system) | styleguide.html on the website bucket | Task 7 |
+| Lambda | foodbridge-admin | Task 10 |
+| API routes | 19 total (adds /stats, /leaderboard, /admin/users, /admin/listings, /admin/listings/{id}) | Task 10 |
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)
