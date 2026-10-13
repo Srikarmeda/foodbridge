@@ -22,3 +22,15 @@ Errors: `{"error": "message"}` with 400, 401, 403, 404, 409, 410 or 500
 | POST | /claims/{id}/cancel | foodbridge-claims | claiming Receiver |
 
 Throttling: 10 requests/s, burst 20. CORS: configured on the gateway (origin narrowed in Task 11).
+
+## Task 10 routes (foodbridge-admin)
+| Method | Path | Who |
+|---|---|---|
+| GET | /stats | any signed-in user (completed-handover totals, cached 15 s) |
+| GET | /leaderboard | any signed-in user (top 10 donors by kg; own rank included; never exposes user ids) |
+| GET | /admin/users | Admin (counts + users; no phone or coordinates) |
+| GET | /admin/listings | Admin (counts + latest 200; optional ?status=) |
+| DELETE | /admin/listings/{id} | Admin (AVAILABLE only; audit line in CloudWatch) |
+
+Total routes: 19. Impact definition: only COMPLETED claims; meals = servings (fallback kg x 2.5); CO2e = kg x 2.5.
+

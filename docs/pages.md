@@ -31,3 +31,9 @@
 6. Claim (confirm dialog) -> POST /listings/{id}/claim -> redirect to claims.html?new=1 with the card highlighted
 7. 409/410 on claim -> server message toast + list refresh (double-claim protection visible to the user)
 8. Receiver marks picked up -> donor confirms handover on the dashboard -> counts toward impact
+
+## Task 10 pages
+| Page | Who | What it does |
+|---|---|---|
+| impact.html | all signed-in roles | Animated platform totals, assumptions line, donor leaderboard with own rank and "You" highlight |
+| admin.html | Admin | Platform stats, Listings and Users tabs (ARIA, arrow keys), search + filters, remove AVAILABLE listings |
