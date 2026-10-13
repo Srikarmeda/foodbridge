@@ -17,7 +17,7 @@
 | Lambda | foodbridge-presign | Task 4 |
 | Lambda | foodbridge-listings | Task 4 |
 | Lambda | foodbridge-claims | Task 4 |
-| HTTP API | foodbridge-api (| HTTP API | foodbridge-api (https://xxxxxxxx.execute-api.us-east-1.amazonaws.com) | Task 5 |
+| HTTP API | foodbridge-api (| HTTP API | foodbridge-api (http://foodbridge-web-srikar.s3-website-us-east-1.amazonaws.com) | Task 5 |
 | JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |) | Task 5 |
 | JWT authorizer | cognito-jwt (issuer = pool, audience = app client) | Task 5 |
 | SES identities | 3 verified emails (sender, donor, receiver; not listed) | Task 6 |
