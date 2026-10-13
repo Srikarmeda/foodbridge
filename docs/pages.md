@@ -18,3 +18,16 @@
 - All dynamic text is rendered through h() as text nodes (no innerHTML with user data)
 - ?next= only accepts a plain local .html file name
 - Map tiles and address search come from OpenStreetMap / Nominatim (light, button-triggered use)
+
+## Task 9 pages (receiver experience)
+| Page | Who | What it does |
+|---|---|---|
+| browse.html | Receiver | Filters (text, radius, type, diet, sort), list + sticky Leaflet map, claim from card, location saved to profile |
+| listing.html?id= | Receiver, Donor, Admin | Photo, facts, countdown, map, role-aware claim panel (UUID-validated id) |
+| claims.html | Receiver | Impact stats, Active/History tabs, progress stepper, pickup hint, picked-up and cancel actions |
+
+## Flows
+5. Receiver sets location (search / GPS / drag pin) -> saved to profile -> becomes eligible for "new food nearby" emails
+6. Claim (confirm dialog) -> POST /listings/{id}/claim -> redirect to claims.html?new=1 with the card highlighted
+7. 409/410 on claim -> server message toast + list refresh (double-claim protection visible to the user)
+8. Receiver marks picked up -> donor confirms handover on the dashboard -> counts toward impact
