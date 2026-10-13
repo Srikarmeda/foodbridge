@@ -109,7 +109,7 @@ function renderListings() {
   for (const c of claims) if (c.status !== "CANCELLED" && !byListing.has(c.listingId)) byListing.set(c.listingId, c);
   const list = listings.filter((l) => filter === "all" || (filter === "active" ? ACTIVE.includes(l.status) : PAST.includes(l.status)));
   if (!list.length) { box.replaceChildren(emptyState({ icon: "inbox", title: "Nothing here yet", text: "No listings match this filter." })); return; }
-  box.replaceChildren(h("div", { class: "grid grid-cards" }, list.map((l) => listingCard(l, { footer: cardFooter(l, byListing.get(l.listingId)) }))));
+  box.replaceChildren(h("div", { class: "grid grid-cards" }, list.map((l) => listingCard(l, { href: `listing.html?id=${encodeURIComponent(l.listingId)}`, footer: cardFooter(l, byListing.get(l.listingId)) }))));
 }
 
 if (user) {
