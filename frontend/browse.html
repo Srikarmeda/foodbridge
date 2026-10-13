@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Find food | FoodBridge</title>
+  <meta name="theme-color" content="#1F7A4D" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <noscript><p class="container" style="padding:1rem">FoodBridge needs JavaScript to run. Please enable it.</p></noscript>
+  <main id="main" class="page container stack" style="--stack:var(--space-5)">
+    <div class="page-header">
+      <div>
+        <h1>Find food near you</h1>
+        <p class="text-muted" style="margin:var(--space-2) 0 0">Claim surplus food before it expires.</p>
+      </div>
+    </div>
+
+    <div class="alert alert--info" id="loc-hint" hidden>
+      <span data-icon="info" data-size="18"></span>
+      <div>Set your location for accurate distances. Saving it also means you get an email when food is posted within 10 km.</div>
+    </div>
+
+    <section class="card loc-bar" aria-label="Search location">
+      <form class="field" id="area-form" novalidate>
+        <label class="label" for="area">Search area</label>
+        <div class="loc-bar__row">
+          <input class="input" id="area" type="search" placeholder="e.g. T Nagar, Chennai" autocomplete="off" maxlength="120" />
+          <button class="btn btn-secondary" id="area-go" type="submit">Search</button>
+          <button class="btn btn-ghost" id="use-location" type="button"><span data-icon="pin" data-size="16"></span>Use my location</button>
+        </div>
+      </form>
+      <p class="loc-now" aria-live="polite">Showing food near <strong id="loc-label"></strong>. Drag the blue pin on the map to move your search.</p>
+    </section>
+
+    <form class="card filters" id="filters" role="search" aria-label="Filters" novalidate>
+      <div class="field field--wide"><label class="label" for="q">Search</label><input class="input" id="q" type="search" placeholder="Biryani, bakery, name..." autocomplete="off" maxlength="60" /></div>
+      <div class="field"><label class="label" for="radius">Distance</label>
+        <select class="select" id="radius"><option value="2">Within 2 km</option><option value="5">Within 5 km</option><option value="10" selected>Within 10 km</option><option value="25">Within 25 km</option><option value="50">Within 50 km</option></select></div>
+      <div class="field"><label class="label" for="foodType">Food type</label>
+        <select class="select" id="foodType"><option value="">All types</option><option>Cooked meal</option><option>Bakery</option><option>Fruits &amp; vegetables</option><option>Packaged food</option><option>Dairy</option><option>Beverages</option><option>Other</option></select></div>
+      <div class="field"><label class="label" for="sort">Sort by</label>
+        <select class="select" id="sort"><option value="expiry">Expiring soonest</option><option value="distance">Nearest first</option></select></div>
+      <div class="field field--wide" role="radiogroup" aria-labelledby="diet-label"><span class="label" id="diet-label">Dietary</span>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="dietary" value="" checked /><span>All</span></label>
+          <label class="chip"><input type="radio" name="dietary" value="veg" /><span>Veg</span></label>
+          <label class="chip"><input type="radio" name="dietary" value="non-veg" /><span>Non-veg</span></label>
+          <label class="chip"><input type="radio" name="dietary" value="vegan" /><span>Vegan</span></label>
+        </div></div>
+    </form>
+
+    <div class="cluster" style="justify-content:space-between">
+      <p id="count" class="text-sm text-muted" aria-live="polite" style="margin:0"></p>
+      <div class="segmented view-toggle" role="group" aria-label="View">
+        <button type="button" data-view="list" aria-pressed="true">List</button>
+        <button type="button" data-view="map" aria-pressed="false">Map</button>
+      </div>
+    </div>
+
+    <div class="browse" id="browse" data-view="list">
+      <div class="browse__list" id="results"></div>
+      <div class="browse__map" id="map" role="application" aria-label="Map of available food. The list shows the same results."></div>
+    </div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script type="module" src="js/pages/browse.js"></script>
+</body>
+</html>
