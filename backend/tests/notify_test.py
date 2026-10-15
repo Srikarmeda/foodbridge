@@ -6,7 +6,7 @@ Then waits 2.5 minutes so listing A passes its expiry.
 
 Usage:
   python backend/tests/notify_test.py --api https://abc123.execute-api.us-east-1.amazonaws.com \
-     --client-id <APP_CLIENT_ID> --donor you+donor@gmail.com --receiver you+ngo@gmail.com
+     --client-id <APP_CLIENT_ID> --donor you+donor@example.com --receiver you+ngo@example.com
 """
 import argparse
 import sys
@@ -22,7 +22,7 @@ def main():
     ap.add_argument("--client-id", required=True)
     ap.add_argument("--donor", required=True)
     ap.add_argument("--receiver", required=True)
-    ap.add_argument("--password", default="FoodBridge#2026")
+    ap.add_argument("--password", required=True)
     a = ap.parse_args()
     base = a.api.rstrip("/")
     dt = login(a.client_id, a.donor, a.password)

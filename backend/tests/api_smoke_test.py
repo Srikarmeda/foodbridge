@@ -3,8 +3,8 @@
 
 Usage:
   python backend/tests/api_smoke_test.py --api https://abc123.execute-api.us-east-1.amazonaws.com \
-      --client-id <APP_CLIENT_ID> --donor you+donor@gmail.com --receiver you+ngo@gmail.com \
-      [--password 'FoodBridge#2026']
+      --client-id <APP_CLIENT_ID> --donor you+donor@example.com --receiver you+ngo@example.com \
+      --password '<test password>'
 
 Both users must already exist, be confirmed, and use the same password.
 """
@@ -56,7 +56,7 @@ def main():
     ap.add_argument("--client-id", required=True)
     ap.add_argument("--donor", required=True)
     ap.add_argument("--receiver", required=True)
-    ap.add_argument("--password", default="FoodBridge#2026")
+    ap.add_argument("--password", required=True)
     a = ap.parse_args()
     base = a.api.rstrip("/")
 

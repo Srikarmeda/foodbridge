@@ -3,7 +3,7 @@
 
 Usage:
   python backend/tests/seed_demo.py --api https://abc123.execute-api.us-east-1.amazonaws.com \
-      --client-id <APP_CLIENT_ID> --donor you+donor@gmail.com [--password 'FoodBridge#2026']
+      --client-id <APP_CLIENT_ID> --donor you+donor@example.com --password '<test password>'
 
 Tip: set NOTIFY_MODE=off on foodbridge-listings first, otherwise every listing emails nearby receivers.
 """
@@ -33,7 +33,7 @@ def main():
     ap.add_argument("--api", required=True)
     ap.add_argument("--client-id", required=True)
     ap.add_argument("--donor", required=True)
-    ap.add_argument("--password", default="FoodBridge#2026")
+    ap.add_argument("--password", required=True)
     a = ap.parse_args()
     base = a.api.rstrip("/")
 

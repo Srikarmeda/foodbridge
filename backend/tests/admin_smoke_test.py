@@ -3,8 +3,8 @@
 
 Usage:
   python backend/tests/admin_smoke_test.py --api https://abc123.execute-api.us-east-1.amazonaws.com \
-     --client-id <APP_CLIENT_ID> --admin <admin email> --donor you+donor@gmail.com \
-     [--password 'FoodBridge#2026'] [--admin-password '...']
+     --client-id <APP_CLIENT_ID> --admin <admin email> --donor you+donor@example.com \
+     --password '<test password>' [--admin-password '...']
 """
 import argparse
 import sys
@@ -19,7 +19,7 @@ def main():
     ap.add_argument("--client-id", required=True)
     ap.add_argument("--admin", required=True)
     ap.add_argument("--donor", required=True)
-    ap.add_argument("--password", default="FoodBridge#2026")
+    ap.add_argument("--password", required=True)
     ap.add_argument("--admin-password", default=None)
     a = ap.parse_args()
     base = a.api.rstrip("/")

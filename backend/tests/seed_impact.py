@@ -3,9 +3,9 @@
 
 Usage:
   python backend/tests/seed_impact.py --api https://abc123.execute-api.us-east-1.amazonaws.com \
-     --client-id <APP_CLIENT_ID> --receiver you+ngo@gmail.com \
-     --donor "you+donor@gmail.com:Anna Nagar Kitchen" --donor "you+donor2@gmail.com:City Bakery" \
-     [--cycles 3] [--password 'FoodBridge#2026']
+     --client-id <APP_CLIENT_ID> --receiver you+ngo@example.com \
+     --donor "you+donor@example.com:Anna Nagar Kitchen" --donor "you+donor2@example.com:City Bakery" \
+     [--cycles 3] --password '<test password>'
 
 Each --donor is  email[:Organisation name].  Running it twice doubles the data.
 Set NOTIFY_MODE=off on foodbridge-listings AND foodbridge-claims first (otherwise ~2 emails per cycle).
@@ -33,7 +33,7 @@ def main():
     ap.add_argument("--receiver", required=True)
     ap.add_argument("--donor", action="append", required=True)
     ap.add_argument("--cycles", type=int, default=3)
-    ap.add_argument("--password", default="FoodBridge#2026")
+    ap.add_argument("--password", required=True)
     a = ap.parse_args()
     base = a.api.rstrip("/")
 
