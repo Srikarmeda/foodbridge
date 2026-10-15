@@ -27,5 +27,7 @@
 | Frontend (design system) | styleguide.html on the website bucket | Task 7 |
 | Lambda | foodbridge-admin | Task 10 |
 | API routes | 19 total (adds /stats, /leaderboard, /admin/users, /admin/listings, /admin/listings/{id}) | Task 10 |
+| CloudFront | Not permitted by the Learner Lab policy (cloudfront:ListDistributions denied) | Task 11 |
+| CORS (API and photo bucket) | restricted to the S3 website origin and localhost:8080 | Task 11 |
 ## Photo key convention
 `listings/{donorId}/{uuid}.{ext}` (public read on `listings/*` only)

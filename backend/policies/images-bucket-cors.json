@@ -1,8 +1,11 @@
 [
   {
     "AllowedHeaders": ["*"],
-    "AllowedMethods": ["GET", "HEAD", "PUT", "POST"],
-    "AllowedOrigins": ["*"],
+    "AllowedMethods": ["GET", "HEAD", "POST"],
+    "AllowedOrigins": [
+      "http://foodbridge-web-srikar.s3-website-us-east-1.amazonaws.com",
+      "http://localhost:8080"
+    ],
     "ExposeHeaders": ["ETag"],
     "MaxAgeSeconds": 3000
   }

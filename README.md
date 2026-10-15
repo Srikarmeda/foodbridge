@@ -6,7 +6,7 @@
 ![aws](https://img.shields.io/badge/AWS-serverless-232F3E)
 ![python](https://img.shields.io/badge/Lambda-Python%203.12-3776AB)
 
-**Live demo:** https://YOUR-CLOUDFRONT-DOMAIN  ·  **Architecture:** [docs/architecture.md](docs/architecture.md)
+   **Live demo:** http://foodbridge-web-srikar.s3-website-us-east-1.amazonaws.com  ·  **Architecture:** [docs/architecture.md](docs/architecture.md)
 
 ## Why
 About 1.05 billion tonnes of food were wasted worldwide in 2022 (19% of food available to consumers) while 783 million people faced chronic hunger (UNEP Food Waste Index Report 2024). FoodBridge shortens the path between a kitchen with leftovers and a shelter that needs them.
@@ -57,7 +57,7 @@ Set your own values in `frontend/js/config.js` (API URL, Cognito pool and client
 `api_smoke_test.py` (20 checks), `admin_smoke_test.py` (16), `live_check.py` (12). Seed scripts create demo data.
 
 ## Security
-Verified JWT on every route, server-side role checks, input validation, conditional writes, presigned uploads with size and type limits, CORS allow-list, throttling, security headers. Known gap: the website bucket is public.
+Verified JWT on every route, server-side role checks, input validation, conditional writes, presigned uploads with size and type limits, CORS allow-list, throttling, security headers. Known gap: the website bucket is public. CloudFront is not permitted in the AWS Academy Learner Lab, so the site is served from the S3 website endpoint over HTTP. On a regular account, CloudFront would add HTTPS and security headers.
 
 ## Cost
 Estimated well under $3 for the whole build, with no idle cost.

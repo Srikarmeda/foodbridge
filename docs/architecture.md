@@ -28,7 +28,7 @@ flowchart LR
 ## Components
 | Layer | Service | Notes |
 |---|---|---|
-| Delivery | CloudFront + S3 website | HTTPS, security headers, cached copies |
+| Delivery | S3 static website (CloudFront is blocked in the Learner Lab; planned for a regular account)|
 | Identity | Cognito | Email sign-in, groups Admin / Donor / Receiver, immutable requestedRole |
 | API | API Gateway HTTP API | 19 routes, JWT authorizer, CORS allow-list, throttled (10 rps, burst 20) |
 | Logic | 6 Lambda functions (Python 3.12) + shared layer | profile, presign, listings, claims, admin, sweeper; all run as LabRole |
